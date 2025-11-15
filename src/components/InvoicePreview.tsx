@@ -1,14 +1,15 @@
 import { forwardRef } from "react";
 import { InvoiceData } from "./InvoiceForm";
-
 interface InvoicePreviewProps {
   data: InvoiceData;
 }
-
-export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
-  ({ data }, ref) => {
-    return (
-      <div ref={ref} className="bg-background p-8 shadow-lg mx-auto" style={{ width: "210mm", minHeight: "297mm" }}>
+export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(({
+  data
+}, ref) => {
+  return <div ref={ref} className="bg-background p-8 shadow-lg mx-auto" style={{
+    width: "210mm",
+    minHeight: "297mm"
+  }}>
         {/* Header */}
         <div className="text-center mb-8 pb-6 border-b-2 border-business-header">
           <h1 className="text-4xl font-bold text-business-header mb-2">
@@ -58,7 +59,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                   Sr. No.
                 </th>
                 <th className="border border-table-border p-3 text-left text-sm font-semibold text-foreground">
-                  Vehicle Description
+                  Description
                 </th>
                 <th className="border border-table-border p-3 text-right text-sm font-semibold text-foreground">
                   Extra Charges
@@ -81,8 +82,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
               </tr>
             </thead>
             <tbody>
-              {data.vehicles.map((vehicle, index) => (
-                <tr key={vehicle.id}>
+              {data.vehicles.map((vehicle, index) => <tr key={vehicle.id}>
                   <td className="border border-table-border p-3 text-sm text-muted-foreground">
                     {index + 1}
                   </td>
@@ -107,8 +107,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                   <td className="border border-table-border p-3 text-right text-sm font-medium text-foreground">
                     {vehicle.subtotal && `₹${vehicle.subtotal}`}
                   </td>
-                </tr>
-              ))}
+                </tr>)}
             </tbody>
           </table>
         </div>
@@ -134,9 +133,6 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
             <p className="font-bold text-xl text-business-header">ADITYA TOURS & TRAVELS</p>
           </div>
         </div>
-      </div>
-    );
-  }
-);
-
+      </div>;
+});
 InvoicePreview.displayName = "InvoicePreview";
