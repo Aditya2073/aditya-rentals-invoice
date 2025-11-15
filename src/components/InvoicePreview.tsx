@@ -122,6 +122,13 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(({
           </div>
         </div>
 
+        {/* Note */}
+        <div className="mb-6">
+          <p className="text-sm text-muted-foreground">
+            <span className="font-medium text-foreground">Note:</span> If want to issue a check please issue to the following name : Ganesh Vasant Rasal
+          </p>
+        </div>
+
         {/* Footer */}
         <div className="grid grid-cols-2 gap-8 pt-8 border-t border-border mt-auto">
           <div>
