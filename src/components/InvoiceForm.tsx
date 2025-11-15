@@ -10,10 +10,12 @@ import { toast } from "sonner";
 export interface VehicleRow {
   id: string;
   description: string;
+  extraCharges: string;
   rentalPeriod: string;
   ratePerDay: string;
   totalKM: string;
   ratePerKM: string;
+  subtotal: string;
 }
 
 export interface InvoiceData {
@@ -24,6 +26,7 @@ export interface InvoiceData {
   address: string;
   paymentMode: string;
   vehicles: VehicleRow[];
+  totalAmount: string;
 }
 
 interface InvoiceFormProps {
@@ -44,10 +47,12 @@ export const InvoiceForm = ({ onDataChange, initialData }: InvoiceFormProps) => 
     const newVehicle: VehicleRow = {
       id: Date.now().toString(),
       description: "",
+      extraCharges: "",
       rentalPeriod: "",
       ratePerDay: "",
       totalKM: "",
       ratePerKM: "",
+      subtotal: "",
     };
     const newData = { ...formData, vehicles: [...formData.vehicles, newVehicle] };
     setFormData(newData);
@@ -182,6 +187,15 @@ export const InvoiceForm = ({ onDataChange, initialData }: InvoiceFormProps) => 
                   />
                 </div>
                 <div>
+                  <Label>Extra Charges</Label>
+                  <Input
+                    type="number"
+                    value={vehicle.extraCharges}
+                    onChange={(e) => updateVehicle(vehicle.id, "extraCharges", e.target.value)}
+                    placeholder="0"
+                  />
+                </div>
+                <div>
                   <Label>Rental Period</Label>
                   <Input
                     value={vehicle.rentalPeriod}
@@ -216,9 +230,32 @@ export const InvoiceForm = ({ onDataChange, initialData }: InvoiceFormProps) => 
                     placeholder="0"
                   />
                 </div>
+                <div>
+                  <Label>Subtotal</Label>
+                  <Input
+                    type="number"
+                    value={vehicle.subtotal}
+                    onChange={(e) => updateVehicle(vehicle.id, "subtotal", e.target.value)}
+                    placeholder="0"
+                  />
+                </div>
               </div>
             </Card>
           ))}
+        </div>
+      </Card>
+
+      <Card className="p-6">
+        <h2 className="text-xl font-semibold mb-4 text-foreground">Total Amount</h2>
+        <div>
+          <Label htmlFor="totalAmount">Total Amount</Label>
+          <Input
+            id="totalAmount"
+            type="number"
+            value={formData.totalAmount}
+            onChange={(e) => updateField("totalAmount", e.target.value)}
+            placeholder="0"
+          />
         </div>
       </Card>
     </div>

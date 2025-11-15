@@ -16,17 +16,20 @@ const Index = () => {
     customerName: "",
     phone: "",
     address: "",
-    paymentMode: "",
+    paymentMode: "Cash",
     vehicles: [
       {
         id: "1",
         description: "",
+        extraCharges: "",
         rentalPeriod: "",
         ratePerDay: "",
         totalKM: "",
         ratePerKM: "",
+        subtotal: "",
       },
     ],
+    totalAmount: "",
   });
 
   const handlePrint = useReactToPrint({
