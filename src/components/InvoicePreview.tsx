@@ -62,7 +62,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(({
                   Description
                 </th>
                 <th className="border border-table-border p-3 text-right text-sm font-semibold text-foreground">
-                  Extra Charges
+                  Charges
                 </th>
                 <th className="border border-table-border p-3 text-left text-sm font-semibold text-foreground">
                   Rental Period
