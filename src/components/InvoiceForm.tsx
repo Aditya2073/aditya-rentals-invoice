@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 import { Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -140,17 +140,12 @@ export const InvoiceForm = ({ onDataChange, initialData }: InvoiceFormProps) => 
           </div>
           <div>
             <Label htmlFor="paymentMode">Mode of Payment</Label>
-            <Select value={formData.paymentMode} onValueChange={(value) => updateField("paymentMode", value)}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select payment mode" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Cash">Cash</SelectItem>
-                <SelectItem value="Check">Check</SelectItem>
-                <SelectItem value="Credit">Credit</SelectItem>
-                <SelectItem value="UPI">UPI</SelectItem>
-              </SelectContent>
-            </Select>
+            <Input
+              id="paymentMode"
+              value={formData.paymentMode}
+              onChange={(e) => updateField("paymentMode", e.target.value)}
+              placeholder="e.g., Cash, UPI, Check"
+            />
           </div>
         </div>
       </Card>

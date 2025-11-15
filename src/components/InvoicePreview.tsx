@@ -23,13 +23,13 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
             <h2 className="font-semibold text-lg mb-3 text-foreground">Invoice Details</h2>
             <div className="space-y-2 text-sm">
               <p className="text-muted-foreground">
-                <span className="font-medium text-foreground">Invoice No:</span> {data.invoiceNumber || "N/A"}
+                <span className="font-medium text-foreground">Invoice No:</span> {data.invoiceNumber}
               </p>
               <p className="text-muted-foreground">
-                <span className="font-medium text-foreground">Date:</span> {data.date || "N/A"}
+                <span className="font-medium text-foreground">Date:</span> {data.date}
               </p>
               <p className="text-muted-foreground">
-                <span className="font-medium text-foreground">Payment Mode:</span> {data.paymentMode || "N/A"}
+                <span className="font-medium text-foreground">Payment Mode:</span> {data.paymentMode}
               </p>
             </div>
           </div>
@@ -37,13 +37,13 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
             <h2 className="font-semibold text-lg mb-3 text-foreground">Customer Details</h2>
             <div className="space-y-2 text-sm">
               <p className="text-muted-foreground">
-                <span className="font-medium text-foreground">Name:</span> {data.customerName || "N/A"}
+                <span className="font-medium text-foreground">Name:</span> {data.customerName}
               </p>
               <p className="text-muted-foreground">
-                <span className="font-medium text-foreground">Phone:</span> {data.phone || "N/A"}
+                <span className="font-medium text-foreground">Phone:</span> {data.phone}
               </p>
               <p className="text-muted-foreground">
-                <span className="font-medium text-foreground">Address:</span> {data.address || "N/A"}
+                <span className="font-medium text-foreground">Address:</span> {data.address}
               </p>
             </div>
           </div>
@@ -87,25 +87,25 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                     {index + 1}
                   </td>
                   <td className="border border-table-border p-3 text-sm text-muted-foreground">
-                    {vehicle.description || "-"}
+                    {vehicle.description}
                   </td>
                   <td className="border border-table-border p-3 text-right text-sm text-muted-foreground">
-                    ₹{vehicle.extraCharges || "0"}
+                    {vehicle.extraCharges && `₹${vehicle.extraCharges}`}
                   </td>
                   <td className="border border-table-border p-3 text-sm text-muted-foreground">
-                    {vehicle.rentalPeriod || "-"}
+                    {vehicle.rentalPeriod}
                   </td>
                   <td className="border border-table-border p-3 text-right text-sm text-muted-foreground">
-                    ₹{vehicle.ratePerDay || "0"}
+                    {vehicle.ratePerDay && `₹${vehicle.ratePerDay}`}
                   </td>
                   <td className="border border-table-border p-3 text-right text-sm text-muted-foreground">
-                    {vehicle.totalKM || "0"}
+                    {vehicle.totalKM}
                   </td>
                   <td className="border border-table-border p-3 text-right text-sm text-muted-foreground">
-                    ₹{vehicle.ratePerKM || "0"}
+                    {vehicle.ratePerKM && `₹${vehicle.ratePerKM}`}
                   </td>
                   <td className="border border-table-border p-3 text-right text-sm font-medium text-foreground">
-                    ₹{vehicle.subtotal || "0"}
+                    {vehicle.subtotal && `₹${vehicle.subtotal}`}
                   </td>
                 </tr>
               ))}
@@ -118,7 +118,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
           <div className="w-64">
             <div className="flex justify-between items-center bg-business-header text-primary-foreground p-4 rounded">
               <span className="font-bold text-lg">Total Amount:</span>
-              <span className="font-bold text-xl">₹{data.totalAmount || "0"}</span>
+              <span className="font-bold text-xl">{data.totalAmount && `₹${data.totalAmount}`}</span>
             </div>
           </div>
         </div>
