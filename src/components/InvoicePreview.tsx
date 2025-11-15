@@ -15,7 +15,8 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(({
           <h1 className="text-4xl font-bold text-business-header mb-2">
             ADITYA TOURS & TRAVELS
           </h1>
-          <p className="text-muted-foreground">Car Rental Services</p>
+          <p className="text-muted-foreground">
+      </p>
         </div>
 
         {/* Invoice Info and Customer Details */}
