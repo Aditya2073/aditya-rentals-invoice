@@ -7,22 +7,6 @@ interface InvoicePreviewProps {
 
 export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
   ({ data }, ref) => {
-    const calculateSubtotal = (vehicle: any) => {
-      const days = parseFloat(vehicle.ratePerDay) || 0;
-      const km = parseFloat(vehicle.totalKM) || 0;
-      const ratePerKm = parseFloat(vehicle.ratePerKM) || 0;
-      
-      // Extract number of days from rental period if it's a string like "3 Days"
-      const rentalPeriodMatch = vehicle.rentalPeriod.match(/\d+/);
-      const rentalDays = rentalPeriodMatch ? parseInt(rentalPeriodMatch[0]) : 1;
-      
-      return (days * rentalDays) + (km * ratePerKm);
-    };
-
-    const calculateTotal = () => {
-      return data.vehicles.reduce((sum, vehicle) => sum + calculateSubtotal(vehicle), 0);
-    };
-
     return (
       <div ref={ref} className="bg-background p-8 shadow-lg mx-auto" style={{ width: "210mm", minHeight: "297mm" }}>
         {/* Header */}
@@ -76,6 +60,9 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                 <th className="border border-table-border p-3 text-left text-sm font-semibold text-foreground">
                   Vehicle Description
                 </th>
+                <th className="border border-table-border p-3 text-right text-sm font-semibold text-foreground">
+                  Extra Charges
+                </th>
                 <th className="border border-table-border p-3 text-left text-sm font-semibold text-foreground">
                   Rental Period
                 </th>
@@ -102,6 +89,9 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                   <td className="border border-table-border p-3 text-sm text-muted-foreground">
                     {vehicle.description || "-"}
                   </td>
+                  <td className="border border-table-border p-3 text-right text-sm text-muted-foreground">
+                    ₹{vehicle.extraCharges || "0"}
+                  </td>
                   <td className="border border-table-border p-3 text-sm text-muted-foreground">
                     {vehicle.rentalPeriod || "-"}
                   </td>
@@ -115,7 +105,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                     ₹{vehicle.ratePerKM || "0"}
                   </td>
                   <td className="border border-table-border p-3 text-right text-sm font-medium text-foreground">
-                    ₹{calculateSubtotal(vehicle).toFixed(2)}
+                    ₹{vehicle.subtotal || "0"}
                   </td>
                 </tr>
               ))}
@@ -128,7 +118,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
           <div className="w-64">
             <div className="flex justify-between items-center bg-business-header text-primary-foreground p-4 rounded">
               <span className="font-bold text-lg">Total Amount:</span>
-              <span className="font-bold text-xl">₹{calculateTotal().toFixed(2)}</span>
+              <span className="font-bold text-xl">₹{data.totalAmount || "0"}</span>
             </div>
           </div>
         </div>
