@@ -57,6 +57,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        business: {
+          header: "hsl(var(--business-header))",
+          accent: "hsl(var(--business-accent))",
+        },
+        table: {
+          header: "hsl(var(--table-header))",
+          border: "hsl(var(--table-border))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
