@@ -15,8 +15,9 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(({
           <h1 className="text-4xl font-bold text-business-header mb-2">
             ADITYA TOURS & TRAVELS
           </h1>
-          <p className="text-muted-foreground">
-      </p>
+          <p className="text-foreground text-sm">
+            B-202, Radha Palace, Diwanman, Vasai West, Palghar, 401202
+          </p>
         </div>
 
         {/* Invoice Info and Customer Details */}
