@@ -126,7 +126,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(({
         {/* Note */}
         <div className="mb-6">
           <p className="text-sm text-muted-foreground">
-            <span className="font-medium text-foreground">Note:</span> If want to issue a check please issue to the following name : Ganesh Vasant Rasal
+            <span className="font-medium text-foreground">Note:</span> If want to issue a check please issue to the following name : <span className="font-bold text-foreground">Ganesh Vasant Rasal</span>
           </p>
         </div>
 
