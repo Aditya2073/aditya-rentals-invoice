@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Plus, Trash2 } from "lucide-react";
@@ -139,12 +140,12 @@ export const InvoiceForm = ({
                 </Button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                <div>
-                  <Label>Vehicle Description</Label>
-                  <Input value={vehicle.description} onChange={e => updateVehicle(vehicle.id, "description", e.target.value)} placeholder="e.g., Sedan - Honda City" />
+                <div className="md:col-span-2 lg:col-span-3">
+                  <Label>Description</Label>
+                  <Textarea value={vehicle.description} onChange={e => updateVehicle(vehicle.id, "description", e.target.value)} placeholder="e.g., Sedan - Honda City" className="min-h-[100px]" />
                 </div>
                 <div>
-                  <Label>Extra Charges</Label>
+                  <Label>Charges</Label>
                   <Input type="number" value={vehicle.extraCharges} onChange={e => updateVehicle(vehicle.id, "extraCharges", e.target.value)} placeholder="0" />
                 </div>
                 <div>
