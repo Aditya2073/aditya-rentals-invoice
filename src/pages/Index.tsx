@@ -1,14 +1,17 @@
 import { useState, useRef } from "react";
 import { InvoiceForm, InvoiceData, VehicleRow } from "@/components/InvoiceForm";
 import { InvoicePreview } from "@/components/InvoicePreview";
+import { MobileInvoiceWizard } from "@/components/MobileInvoiceWizard";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Printer, Download } from "lucide-react";
 import { useReactToPrint } from "react-to-print";
 import { toast } from "sonner";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
   const invoiceRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   
   const [invoiceData, setInvoiceData] = useState<InvoiceData>({
     invoiceNumber: "",
@@ -43,6 +46,12 @@ const Index = () => {
     toast.success("Invoice ready to save as PDF!");
   };
 
+  // Mobile view: Show step-by-step wizard
+  if (isMobile) {
+    return <MobileInvoiceWizard initialData={invoiceData} onDataChange={setInvoiceData} />;
+  }
+
+  // Desktop view: Show side-by-side layout
   return (
     <div className="min-h-screen bg-muted/30">
       {/* Header */}
