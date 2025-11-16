@@ -134,7 +134,7 @@ export const InvoiceForm = ({
         <div className="space-y-4">
           {formData.vehicles.map((vehicle, index) => <Card key={vehicle.id} className="p-4 bg-muted/30">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="font-medium text-foreground">Vehicle {index + 1}</h3>
+                <h3 className="font-medium text-foreground">Sr No: {index + 1}</h3>
                 <Button variant="ghost" size="sm" onClick={() => removeVehicleRow(vehicle.id)} className="h-8 w-8 p-0 text-destructive hover:text-destructive">
                   <Trash2 className="h-4 w-4" />
                 </Button>
