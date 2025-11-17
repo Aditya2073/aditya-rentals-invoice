@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import { InvoiceForm, InvoiceData, VehicleRow } from "@/components/InvoiceForm";
+import { InvoiceForm } from "@/components/InvoiceForm";
+import type { InvoiceData } from "@/types/invoice";
 import { InvoicePreview } from "@/components/InvoicePreview";
 import { MobileInvoiceWizard } from "@/components/MobileInvoiceWizard";
 import { Button } from "@/components/ui/button";
