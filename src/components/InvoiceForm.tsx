@@ -6,26 +6,9 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
-export interface VehicleRow {
-  id: string;
-  description: string;
-  extraCharges: string;
-  rentalPeriod: string;
-  ratePerDay: string;
-  totalKM: string;
-  ratePerKM: string;
-  subtotal: string;
-}
-export interface InvoiceData {
-  invoiceNumber: string;
-  date: string;
-  customerName: string;
-  phone: string;
-  address: string;
-  paymentMode: string;
-  vehicles: VehicleRow[];
-  totalAmount: string;
-}
+import type { InvoiceData, VehicleRow } from "@/types/invoice";
+
+export type { InvoiceData, VehicleRow };
 interface InvoiceFormProps {
   onDataChange: (data: InvoiceData) => void;
   initialData: InvoiceData;

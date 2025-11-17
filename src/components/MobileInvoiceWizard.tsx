@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { ChevronLeft, ChevronRight, Plus, Trash2, Download, Check } from "lucide-react";
-import { InvoiceData, VehicleRow } from "./InvoiceForm";
+import type { InvoiceData, VehicleRow } from "@/types/invoice";
 import { InvoicePreview } from "./InvoicePreview";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
