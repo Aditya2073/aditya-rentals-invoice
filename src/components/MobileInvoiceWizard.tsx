@@ -8,7 +8,8 @@ import { Progress } from "@/components/ui/progress";
 import { ChevronLeft, ChevronRight, Plus, Trash2, Download, Check } from "lucide-react";
 import { InvoiceData, VehicleRow } from "./InvoiceForm";
 import { InvoicePreview } from "./InvoicePreview";
-import { useReactToPrint } from "react-to-print";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import { toast } from "sonner";
 
 interface MobileInvoiceWizardProps {
@@ -75,11 +76,19 @@ export const MobileInvoiceWizard = ({ initialData, onDataChange }: MobileInvoice
     toast.success("Vehicle row removed");
   };
 
-  const handlePrint = useReactToPrint({
-    contentRef: invoiceRef,
-    documentTitle: `Invoice_${formData.invoiceNumber || "Draft"}`,
-    onAfterPrint: () => toast.success("Invoice saved as PDF!"),
-  });
+  const handleSavePDF = async () => {
+    const node = invoiceRef.current;
+    if (!node) return;
+    const canvas = await html2canvas(node, { scale: 2, useCORS: true, backgroundColor: "#ffffff", logging: false });
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pageWidth = 210;
+    const imgWidth = pageWidth;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+    pdf.save(`Invoice_${formData.invoiceNumber || "Draft"}.pdf`);
+    toast.success("Invoice saved as PDF!");
+  };
 
   const handleNext = () => {
     if (currentStep < totalSteps) {
@@ -308,7 +317,7 @@ export const MobileInvoiceWizard = ({ initialData, onDataChange }: MobileInvoice
               <p className="text-muted-foreground mb-4">
                 Review your invoice below and tap "Save as PDF" to download.
               </p>
-              <Button onClick={handlePrint} className="w-full gap-2" size="lg">
+              <Button onClick={handleSavePDF} className="w-full gap-2" size="lg">
                 <Download className="h-5 w-5" />
                 Save as PDF
               </Button>
@@ -324,8 +333,8 @@ export const MobileInvoiceWizard = ({ initialData, onDataChange }: MobileInvoice
           </div>
         )}
         
-        {/* Hidden full-size invoice for printing only */}
-        <div className="hidden print:block">
+        {/* Offscreen full-size invoice for PDF capture */}
+        <div style={{ position: "fixed", left: "-10000px", top: 0, width: "210mm", background: "#ffffff" }}>
           <InvoicePreview ref={invoiceRef} data={formData} />
         </div>
       </div>
