@@ -317,12 +317,17 @@ export const MobileInvoiceWizard = ({ initialData, onDataChange }: MobileInvoice
             <Card className="p-4 overflow-hidden">
               <div className="overflow-auto">
                 <div className="transform scale-50 origin-top-left" style={{ width: "200%", height: "auto" }}>
-                  <InvoicePreview ref={invoiceRef} data={formData} />
+                  <InvoicePreview data={formData} />
                 </div>
               </div>
             </Card>
           </div>
         )}
+        
+        {/* Hidden full-size invoice for printing only */}
+        <div className="hidden print:block">
+          <InvoicePreview ref={invoiceRef} data={formData} />
+        </div>
       </div>
 
       {/* Navigation Footer */}
