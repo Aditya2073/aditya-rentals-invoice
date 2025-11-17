@@ -308,35 +308,25 @@ export const MobileInvoiceWizard = ({ initialData, onDataChange }: MobileInvoice
         )}
 
         {currentStep === 4 && (
-          <div className="space-y-4">
-            <Card className="p-6">
-              <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
-                <Check className="h-6 w-6 text-green-600" />
-                Invoice Ready!
-              </h2>
-              <p className="text-muted-foreground mb-4">
-                Review your invoice below and tap "Save as PDF" to download.
-              </p>
-              <Button onClick={handleSavePDF} className="w-full gap-2" size="lg">
-                <Download className="h-5 w-5" />
-                Save as PDF
-              </Button>
-            </Card>
-
-            <Card className="p-4 overflow-hidden">
-              <div className="overflow-auto">
-                <div className="transform scale-50 origin-top-left" style={{ width: "200%", height: "auto" }}>
-                  <InvoicePreview data={formData} />
-                </div>
-              </div>
-            </Card>
-          </div>
+          <Card className="p-6 space-y-4">
+            <div className="flex items-center gap-2 mb-4">
+              <Check className="h-6 w-6 text-green-600" />
+              <h2 className="text-xl font-semibold text-foreground">Invoice Ready!</h2>
+            </div>
+            <p className="text-muted-foreground">
+              Your invoice has been generated successfully. Tap the button below to save it as a PDF file.
+            </p>
+            <Button onClick={handleSavePDF} className="w-full gap-2" size="lg">
+              <Download className="h-5 w-5" />
+              Save as PDF
+            </Button>
+          </Card>
         )}
-        
-        {/* Offscreen full-size invoice for PDF capture */}
-        <div style={{ position: "fixed", left: "-10000px", top: 0, width: "210mm", background: "#ffffff" }}>
-          <InvoicePreview ref={invoiceRef} data={formData} />
-        </div>
+      </div>
+
+      {/* Offscreen full-size invoice for PDF capture */}
+      <div ref={invoiceRef} style={{ position: "fixed", left: "-10000px", top: 0, width: "210mm", background: "#ffffff" }}>
+        <InvoicePreview data={formData} />
       </div>
 
       {/* Navigation Footer */}

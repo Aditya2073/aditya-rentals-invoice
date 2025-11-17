@@ -89,8 +89,8 @@ const Index = () => {
                 </div>
               </div>
               <div className="overflow-auto max-h-[calc(100vh-200px)] border rounded-lg bg-background">
-                <div className="transform scale-75 origin-top-left" style={{ width: "133%" }}>
-                  <InvoicePreview ref={invoiceRef} data={invoiceData} />
+                <div ref={invoiceRef} className="transform scale-75 origin-top-left" style={{ width: "133%" }}>
+                  <InvoicePreview data={invoiceData} />
                 </div>
               </div>
             </Card>

@@ -141,7 +141,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(({
             <p className="font-semibold text-lg text-foreground mb-1">Ganesh Rasal</p>
             <p className="font-bold text-xl text-business-header">ADITYA TOURS & TRAVELS</p>
           </div>
-        </div>
-      </div>;
-});
-InvoicePreview.displayName = "InvoicePreview";
+      </div>
+    </div>
+  );
+};
